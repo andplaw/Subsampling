@@ -8,9 +8,8 @@ message: >-
   metadata from this file.
 type: software
 authors:
-  - given-names: Andrew
+  - given-names: Andrew P
     family-names: Lawrence
-    name-particle: P
     email: andrew.lawrence@colorado.edu
     affiliation: University of Colorado Boulder
     orcid: 'https://orcid.org/0000-0002-4549-7052'
