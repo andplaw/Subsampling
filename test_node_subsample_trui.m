@@ -2,6 +2,8 @@
 close all; 
 clear all;
 
+filePath = "results/";
+
 ms = 3;
 
 ninit    = 5e+4;        % Upper bound on potential dot positions (PDPs) to use
@@ -17,7 +19,7 @@ plot(xy(:,1),xy(:,2),'k.','MarkerSize',ms); axis square %
 % title(['Original trui image'])
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_dithered.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_dithered.eps','BackgroundColor','none')
 
 A = double(imread('trui.png','PNG')); 
 
@@ -60,14 +62,14 @@ plot(xy_c_y(:,1),xy_c_y(:,2),'k.','MarkerSize',ms); axis square %
 % title(['Sub 1, WS, ', num2str(size(xy_c_y,1)), ' nodes'])
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub1_ws.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub1_ws.eps','BackgroundColor','none')
 
 figure
 plot(xy_c2_y(:,1),xy_c2_y(:,2),'k.','MarkerSize',ms); axis square %
 % title(['Sub 2, WS, ', num2str(size(xy_c2_y,1)), ' nodes'])
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub2_ws.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub2_ws.eps','BackgroundColor','none')
 
 % --- Display the coarsening in series
 % figure
@@ -88,7 +90,7 @@ exportgraphics(ax,'trui_sub2_ws.eps','BackgroundColor','none')
 %               size(xy_c2_y,1)),'Interpreter','latex')
 % axis square %
 % set(gcf, 'Renderer', 'painters')
-% exportgraphics(t_y,'trui_subs_ws.eps','BackgroundColor','none')
+% exportgraphics(t_y,filePath+'trui_subs_ws.eps','BackgroundColor','none')
 
 %% Subsample Bengt
 kb1 = 1.5101;
@@ -105,7 +107,7 @@ axis square
 % title(['Sub 1, MF, ',num2str(length(xy_c_b(:,1))),' nodes']);
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub1_mf.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub1_mf.eps','BackgroundColor','none')
 
 figure % Show the twice subsampled image
 plot(xy_c2_b(:,1),xy_c2_b(:,2),'k.','MarkerSize',1.0*ms)
@@ -113,7 +115,7 @@ axis square
 % title(['Sub 2, MF, ',num2str(length(xy_c2_b(:,1))),' nodes']);
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub2_mf.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub2_mf.eps','BackgroundColor','none')
 
 % --- Display the coarsening in series
 % figure
@@ -134,7 +136,7 @@ exportgraphics(ax,'trui_sub2_mf.eps','BackgroundColor','none')
 %               size(xy_c2_b,1)),'Interpreter','latex')
 % axis square %
 % set(gcf, 'Renderer', 'painters')
-% exportgraphics(t_b,'trui_subs_mf.eps','BackgroundColor','none')
+% exportgraphics(t_b,filePath+'trui_subs_mf.eps','BackgroundColor','none')
 
 %% Subsample dexsets - bad bad not good don't use
 
@@ -195,7 +197,7 @@ axis square
 % title(['Sub 1, PD, ',num2str(length(xy_c_p(:,1))),' nodes']);
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub1_pd.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub1_pd.eps','BackgroundColor','none')
 
 figure % Show the twice subsampled image
 plot(xy_c2_p(:,1),xy_c2_p(:,2),'k.','MarkerSize',1.0*ms)
@@ -203,7 +205,7 @@ axis square
 % title(['Sub 2, PD, ',num2str(length(xy_c2_p(:,1))),' nodes']);
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub2_pd.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub2_pd.eps','BackgroundColor','none')
 
 % --- Display the coarsening in series
 % figure
@@ -224,7 +226,7 @@ exportgraphics(ax,'trui_sub2_pd.eps','BackgroundColor','none')
 %               size(xy_c2_p,1)),'Interpreter','latex')
 % axis square %
 % set(gcf, 'Renderer', 'painters')
-% exportgraphics(t_p,'trui_subs_pd.eps','BackgroundColor','none')
+% exportgraphics(t_p,filePath+'trui_subs_pd.eps','BackgroundColor','none')
 
 %% Nearest Neighbor Flagging for var density
 % not tunable to any number of nodes
@@ -252,13 +254,13 @@ exportgraphics(ax,'trui_sub2_pd.eps','BackgroundColor','none')
 % xy_c_g = textscan(fid, '%f', 'Delimiter',',');
 % xy_c_g = xy_c_g{1};
 % fclose(fid);
-xy_c_g = readmatrix('trui_sub1_gds.csv');
+xy_c_g = readmatrix('trui_sub1_gDS.csv');
 
 % fid = fopen('trui_sub2_gds.csv');
 % xy_c2_g = textscan(fid, '%f', 'Delimiter',',');
 % xy_c2_g = xy_c2_g{1};
 % fclose(fid);
-xy_c2_g = readmatrix('trui_sub2_gds.csv');
+xy_c2_g = readmatrix('trui_sub2_gDS.csv');
 
 
 % --- Display the coarsened images alone
@@ -268,7 +270,7 @@ axis square
 % title(['Sub 1, gDS, ',num2str(length(xy_c_g(:,1))),' nodes']);
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub1_gds.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub1_gDS.eps','BackgroundColor','none')
 
 figure % Show the twice subsampled image
 plot(xy_c2_g(:,1),xy_c2_g(:,2),'k.','MarkerSize',1.0*ms)
@@ -276,7 +278,7 @@ axis square
 % title(['Sub 2, gDS, ',num2str(length(xy_c2_g(:,1))),' nodes']);
 ax = gca;
 set(gca,'XTick',[], 'YTick', [])
-exportgraphics(ax,'trui_sub2_gds.eps','BackgroundColor','none')
+exportgraphics(ax,filePath+'trui_sub2_gDS.eps','BackgroundColor','none')
 
 % --- Display the coarsening in series
 % figure
@@ -297,8 +299,8 @@ exportgraphics(ax,'trui_sub2_gds.eps','BackgroundColor','none')
 %               size(xy_c2_g,1)),'Interpreter','latex')
 % axis square %
 % set(gcf, 'Renderer', 'painters')
-% exportgraphics(t_g,'trui_subs_gds.eps','BackgroundColor','none')
-% export_fig trui_subs_gds -eps -transparent
+% exportgraphics(t_g,filePath+'trui_subs_gDS.eps','BackgroundColor','none')
+% export_fig trui_subs_gDS -eps -transparent
 
 %% Node Quality Measures
 
@@ -351,12 +353,12 @@ for s = 1:size(methods,2)
     figure(fig_avg);
     ax_avg = gca();
     filename = ['CLR_avg_sub',num2str(s),'.eps'];
-    exportgraphics(ax_avg,filename,'BackgroundColor','none')
+    exportgraphics(ax_avg,filePath+filename,'BackgroundColor','none')
     
     figure(fig_sd);
     ax_sd = gca();
     filename = ['CLR_sd_sub',num2str(s),'.eps'];
-    exportgraphics(ax_sd,filename,'BackgroundColor','none')
+    exportgraphics(ax_sd,filePath+filename,'BackgroundColor','none')
 end
 
 
